@@ -12,7 +12,7 @@
 
 <script>
 import Landscape from './components/Landscape/Landscape'
-import moment from 'moment'
+import { format } from 'date-fns'
 export default {
   name: 'App',
   components: {
@@ -32,7 +32,7 @@ export default {
       let time = new Date();
       let hour = time.getHours()
       const morning = hour >= 5 && hour < 13
-      const afternoon = hour >= 13 && hour < 18
+      const afternoon = hour >= 12 && hour < 18
 
       if(morning){
         this.actualImage = require('./assets/dia.jpg')
@@ -51,8 +51,9 @@ export default {
 
     reloadHour(){
       setInterval(() => {
-        this.actualHour = moment().format('HH:mm:ss')
-        document.title = `${ moment().format('HH:mm:ss')} - Hora atual`
+        let time = new Date()
+        this.actualHour = `${format(time, 'HH:mm:ss')}`
+        document.title = `${format(time, 'HH:mm:ss')} - Hora atual`
       }, 1000);
     }
   },
@@ -74,6 +75,7 @@ export default {
 }
 
 .hour-period{
+  text-align: center;
   color: white;
   text-shadow: 2px 2px 2px black;
   font-family: sans-serif;

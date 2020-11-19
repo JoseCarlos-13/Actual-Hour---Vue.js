@@ -14,7 +14,8 @@ export default {
 
 <style>
   .landscape{
-    width: 50%;
+    width: 600px;
+    height: auto;
     border: 6px solid white;
     box-shadow: 2px 3px 6px black;
   }
